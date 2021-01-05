@@ -35,6 +35,10 @@ const SortArrow = ({ direction }) => {
   }
 };
 
+const numberWithCommas = (number) => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 const CountriesTable = ({ countries }) => {
   const [direction, setDirection] = useState();
   const [value, setValue] = useState();
@@ -98,7 +102,9 @@ const CountriesTable = ({ countries }) => {
               <img src={country.flag} alt={country.name} />
             </div>
             <div className={styles.name}>{country.name}</div>
-            <div className={styles.population}>{country.population}</div>
+            <div className={styles.population}>
+              {numberWithCommas(country.population)}
+            </div>
             <div className={styles.area}>{country.area || 0}</div>
             <div className={styles.gini}>{country.gini || 0} %</div>
           </div>
