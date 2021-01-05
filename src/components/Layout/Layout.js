@@ -8,13 +8,15 @@ const Layout = ({ children, title = "World Ranks" }) => {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    localStorage.setItem("theme", theme);
-    document.documentElement.setAttribute(
-      "data-theme",
-      localStorage.getItem("theme")
-    );
+    const localTheme = localStorage.getItem("theme");
+    if (localTheme) {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("theme")
+      );
 
-    setTheme(localStorage.getItem("theme"));
+      setTheme(localStorage.getItem("theme"));
+    }
   }, []);
 
   const switchTheme = () => {
