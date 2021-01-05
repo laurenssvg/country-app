@@ -9,9 +9,18 @@
 
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 32px;
+}
+
+.link :hover {
+  cursor: pointer;
+}
+
+.icon :hover {
+  cursor: pointer;
+  color: rgba(var(--text-secondary), 0.5);
 }
 
 .footer {
