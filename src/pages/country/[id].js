@@ -1,6 +1,7 @@
 import styles from "./Country.module.css";
 import Layout from "../../components/Layout/Layout";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const getCountry = async (id) => {
   const res = await fetch(`https://restcountries.eu/rest/v2/alpha/${id}`);
@@ -23,6 +24,10 @@ const Country = ({ country }) => {
     getBorders();
   }, []);
 
+  const numberWithCommas = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   return (
     <Layout title={country.name}>
       <div className={styles.container}>
@@ -36,13 +41,15 @@ const Country = ({ country }) => {
             <div className={styles.overview_numbers}>
               <div className={styles.overview_population}>
                 <div className={styles.overview_value}>
-                  {country.population}
+                  {numberWithCommas(country.population)}
                 </div>
                 <div className={styles.overview_label}>Population</div>
               </div>
 
               <div className={styles.overview_area}>
-                <div className={styles.overview_value}>{country.area}</div>
+                <div className={styles.overview_value}>
+                  {country.area !== null ? numberWithCommas(country.area) : 0}
+                </div>
                 <div className={styles.overview_label}>Area</div>
               </div>
             </div>
@@ -91,14 +98,13 @@ const Country = ({ country }) => {
               </div>
               {borders.length > 0 ? (
                 <div className={styles.details_panel_borders_container}>
-                  {borders.map(({ flag, name }) => (
-                    <div
-                      key={name}
-                      className={styles.details_panel_borders_country}
-                    >
-                      <img src={flag} alt={name}></img>
-                      <div className={styles.details_panel_name}>{name}</div>
-                    </div>
+                  {borders.map(({ flag, name, alpha3Code }) => (
+                    <Link key={name} href={`/country/${alpha3Code}`}>
+                      <div className={styles.details_panel_borders_country}>
+                        <img src={flag} alt={name}></img>
+                        <div className={styles.details_panel_name}>{name}</div>
+                      </div>
+                    </Link>
                   ))}
                 </div>
               ) : (
