@@ -106,9 +106,11 @@ const CountriesTable = ({ countries }) => {
               {numberWithCommas(country.population)}
             </div>
             <div className={styles.area}>
-              {country.area === null ? 0 : numberWithCommas(country.area)}
+              {country.area === null ? `NA` : numberWithCommas(country.area)}
             </div>
-            <div className={styles.gini}>{country.gini || 0} %</div>
+            <div className={styles.gini}>
+              {country.gini ? `${country.gini}%` : "NA"}
+            </div>
           </div>
         </Link>
       ))}

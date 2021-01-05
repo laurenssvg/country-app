@@ -91,9 +91,21 @@ const Country = ({ country }) => {
               </div>
             </div>
             <div className={styles.details_panel_row}>
+              <div className={styles.details_panel_label}>Top Level Domain</div>
+              <div className={styles.details_panel_value}>
+                {country.topLevelDomain.map((name) => name)}
+              </div>
+            </div>
+            <div className={styles.details_panel_row}>
               <div className={styles.details_panel_label}>Calling Codes</div>
               <div className={styles.details_panel_value}>
                 {country.callingCodes.map((code) => `+${code}`)}
+              </div>
+            </div>
+            <div className={styles.details_panel_row}>
+              <div className={styles.details_panel_label}>Timezones</div>
+              <div className={styles.details_panel_value}>
+                {country.timezones.map((name) => name).join(", ")}
               </div>
             </div>
             <div className={styles.details_panel_row}>
