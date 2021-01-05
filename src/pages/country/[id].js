@@ -56,7 +56,9 @@ const Country = ({ country }) => {
                 <div className={styles.overview_value}>
                   {country.area !== null ? numberWithCommas(country.area) : 0}
                 </div>
-                <div className={styles.overview_label}>Area</div>
+                <div className={styles.overview_label}>
+                  Area (km<sup style={{ fontSize: "0.75rem" }}>2</sup>)
+                </div>
               </div>
             </div>
           </div>

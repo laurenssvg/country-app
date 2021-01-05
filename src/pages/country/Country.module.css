@@ -63,6 +63,7 @@
 
 .details_panel_value {
   max-width: 300px;
+  text-align: end;
 }
 .details_panel_borders {
   padding: 20px;
