@@ -91,7 +91,7 @@ const Country = ({ country }) => {
             <div className={styles.details_panel_row}>
               <div className={styles.details_panel_label}>Calling Codes</div>
               <div className={styles.details_panel_value}>
-                {country.callingCodes.map(({ name }) => name).join(", ")}
+                {country.callingCodes.map((code) => `+${code}`)}
               </div>
             </div>
             <div className={styles.details_panel_row}>
