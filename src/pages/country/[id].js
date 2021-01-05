@@ -28,7 +28,7 @@ const Country = ({ country }) => {
     }
 
     return () => (mounted = false);
-  }, [borders]);
+  }, [country]);
 
   const numberWithCommas = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -86,6 +86,12 @@ const Country = ({ country }) => {
               <div className={styles.details_panel_label}>Currencies</div>
               <div className={styles.details_panel_value}>
                 {country.currencies.map(({ name }) => name).join(", ")}
+              </div>
+            </div>
+            <div className={styles.details_panel_row}>
+              <div className={styles.details_panel_label}>Calling Codes</div>
+              <div className={styles.details_panel_value}>
+                {country.callingCodes.map(({ name }) => name).join(", ")}
               </div>
             </div>
             <div className={styles.details_panel_row}>
