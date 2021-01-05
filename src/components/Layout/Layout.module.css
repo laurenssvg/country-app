@@ -18,6 +18,10 @@
   cursor: pointer;
 }
 
+.icon button {
+  outline: none;
+}
+
 .icon :hover {
   cursor: pointer;
   color: rgba(var(--text-secondary), 0.5);
