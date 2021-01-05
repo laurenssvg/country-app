@@ -20,9 +20,15 @@ const Country = ({ country }) => {
 
     setBorders(borders);
   };
+
   useEffect(() => {
-    getBorders();
-  }, []);
+    let mounted = true;
+    if (mounted) {
+      getBorders();
+    }
+
+    return () => (mounted = false);
+  }, [borders]);
 
   const numberWithCommas = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

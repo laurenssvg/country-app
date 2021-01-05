@@ -60,6 +60,10 @@
 .details_panel_label {
   color: var(--text-secondary);
 }
+
+.details_panel_value {
+  max-width: 300px;
+}
 .details_panel_borders {
   padding: 20px;
 }
