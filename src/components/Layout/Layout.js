@@ -10,7 +10,7 @@ const Layout = ({ children, title = "World Ranks" }) => {
   useEffect(() => {
     document.documentElement.setAttribute(
       "data-theme",
-      localStorage.getItem("theme")
+      localStorage.setItem("theme", theme)
     );
 
     setTheme(localStorage.getItem("theme"));
