@@ -8,9 +8,10 @@ const Layout = ({ children, title = "World Ranks" }) => {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
+    localStorage.setItem("theme", theme);
     document.documentElement.setAttribute(
       "data-theme",
-      localStorage.setItem("theme", theme)
+      localStorage.getItem("theme")
     );
 
     setTheme(localStorage.getItem("theme"));
