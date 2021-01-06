@@ -81,7 +81,9 @@ const Country = ({ country }) => {
             <div className={styles.details_panel_row}>
               <div className={styles.details_panel_label}>Languages</div>
               <div className={styles.details_panel_value}>
-                {country.languages.map(({ name }) => name).join(", ")}
+                {country.languages
+                  .map(({ name, nativeName }) => `${name}(${nativeName})`)
+                  .join(", ")}
               </div>
             </div>
             <div className={styles.details_panel_row}>
