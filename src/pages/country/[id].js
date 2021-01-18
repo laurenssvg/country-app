@@ -12,7 +12,8 @@ const getCountry = async (id) => {
 
 const getCountrySummary = async (name) => {
   const res = await fetch(
-    `https://en.wikipedia.org/api/rest_v1/page/summary/${name}`
+    `https://en.wikipedia.org/api/rest_v1/page/summary/${name}`,
+    { headers: { "User-Agent": "lauro.enzo@gmail.com" } }
   );
 
   const countrySummary = await res.json();
@@ -21,7 +22,8 @@ const getCountrySummary = async (name) => {
 
 const getCountryImages = async (name) => {
   const res = await fetch(
-    `https://en.wikipedia.org/api/rest_v1/page/media-list/${name}`
+    `https://en.wikipedia.org/api/rest_v1/page/media-list/${name}`,
+    { headers: { "User-Agent": "lauro.enzo@gmail.com" } }
   );
 
   const countryMedia = await res.json();
