@@ -10,7 +10,32 @@ const getCountry = async (id) => {
   return country;
 };
 
-const Country = ({ country }) => {
+const getCountrySummary = async (name) => {
+  const res = await fetch(
+    `https://en.wikipedia.org/api/rest_v1/page/summary/${name}`
+  );
+
+  const countrySummary = await res.json();
+  return countrySummary;
+};
+
+const getCountryImages = async (name) => {
+  const res = await fetch(
+    `https://en.wikipedia.org/api/rest_v1/page/media-list/${name}`
+  );
+
+  const countryMedia = await res.json();
+
+  const countryImages = countryMedia.items.filter(
+    (media) => media.type === "image"
+  );
+
+  const countryImagesSrc = countryImages.map((image) => image.srcset[0]);
+
+  return countryImagesSrc;
+};
+
+const Country = ({ country, countrySummary, countryImages }) => {
   const [borders, setBorders] = useState([]);
 
   const getBorders = async () => {
@@ -60,6 +85,9 @@ const Country = ({ country }) => {
                   Area (km<sup style={{ fontSize: "0.75rem" }}>2</sup>)
                 </div>
               </div>
+            </div>
+            <div className={styles.overview_summary}>
+              {countrySummary.extract}
             </div>
           </div>
         </div>
@@ -139,6 +167,21 @@ const Country = ({ country }) => {
                 <div>There are no neighbouring countries, only water..</div>
               )}
             </div>
+            <div className={styles.details_panel_images}>
+              <div className={styles.details_panel_images_label}>
+                Related Images
+              </div>
+              <div className={styles.details_panel_images_container}>
+                {countryImages.map(({ src }) => (
+                  <div
+                    key={src}
+                    className={styles.details_panel_images_country}
+                  >
+                    <img src={src} alt={src}></img>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -166,9 +209,15 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
   const country = await getCountry(params.id);
 
+  const countrySummary = await getCountrySummary(country.name);
+
+  const countryImages = await getCountryImages(country.name);
+
   return {
     props: {
       country,
+      countrySummary,
+      countryImages,
     },
   };
 };

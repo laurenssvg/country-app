@@ -36,6 +36,10 @@
   color: var(--text-secondary);
 }
 
+.overview_summary {
+  margin-top: 10px;
+}
+
 .details_panel {
   background-color: var(--background-color-light);
   box-shadow: var(--box-shadow);
@@ -110,4 +114,30 @@
   .container_right {
     grid-column: 5 / span 8;
   }
+}
+
+.details_panel_images {
+  padding: 20px;
+}
+
+.details_panel_images_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 24px;
+}
+
+.details_panel_images img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.details_panel_images_country {
+  text-align: center;
+  cursor: pointer;
+}
+
+.details_panel_images_label {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  text-align: center;
 }
