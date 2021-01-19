@@ -28,13 +28,18 @@ const getCountryImages = async (name) => {
 
   const countryMedia = await res.json();
 
-  const countryImages = countryMedia.items.filter(
-    (media) => media.type === "image"
-  );
+  if (countryMedia.items) {
+    const countryImages = countryMedia.items.filter(
+      (media) => media.type === "image"
+    );
+    const countryImagesSrc = countryImages.map((image) =>
+      image.showInGallery ? image.srcset[0] : image
+    );
 
-  const countryImagesSrc = countryImages.map((image) => image.srcset[0]);
-
-  return countryImagesSrc;
+    return countryImagesSrc;
+  } else {
+    return [];
+  }
 };
 
 const Country = ({ country, countrySummary, countryImages }) => {
@@ -174,9 +179,9 @@ const Country = ({ country, countrySummary, countryImages }) => {
                 Related Images
               </div>
               <div className={styles.details_panel_images_container}>
-                {countryImages.map(({ src }) => (
+                {countryImages.map(({ src }, index) => (
                   <div
-                    key={src}
+                    key={index}
                     className={styles.details_panel_images_country}
                   >
                     <img src={src} alt={src}></img>
