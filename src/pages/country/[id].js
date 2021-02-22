@@ -54,12 +54,7 @@ const Country = ({ country, countrySummary, countryImages }) => {
   };
 
   useEffect(() => {
-    let mounted = true;
-    if (mounted) {
-      getBorders();
-    }
-
-    return () => (mounted = false);
+    getBorders();
   }, [country]);
 
   const numberWithCommas = (number) => {
