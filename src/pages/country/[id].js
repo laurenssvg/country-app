@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const getCountry = async (id) => {
-  const res = await fetch(`https://restcountries.eu/rest/v2/alpha/${id}`);
+  const res = await fetch(`https://restcountries.com/rest/v3.1/alpha/${id}`);
 
   const country = await res.json();
-  return country;
+  return country[0];
 };
 
 const getCountrySummary = async (name) => {
@@ -194,7 +194,7 @@ const Country = ({ country, countrySummary, countryImages }) => {
 export default Country;
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`https://restcountries.eu/rest/v2/all`);
+  const res = await fetch(`https://restcountries.com/rest/v3.1/all`);
 
   const countries = await res.json();
 
