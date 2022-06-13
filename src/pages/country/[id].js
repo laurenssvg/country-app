@@ -194,7 +194,7 @@ const Country = ({ country, countrySummary, countryImages }) => {
 export default Country;
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`https://restcountries.com/rest/v3.1/all`);
+  const res = await fetch(`https://restcountries.com/v3.1/all`);
 
   const countries = await res.json();
 
